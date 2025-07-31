@@ -1,6 +1,7 @@
 name: Nightly Build by me
 on:
-  schedule:
+ push:
+ schedule:
     - cron: '26 12 * * *'
 
 
