@@ -1,0 +1,30 @@
+name: Nightly Build by me
+on:
+  schedule:
+    - cron: '26 12 * * *'
+
+
+jobs:
+  nightly_build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.2.2
+
+      - name: run unit test
+        run: mvn test
+
+      - name: build with maven
+        run: mvn -DskipTests -B package --no-transfer-progress --file ./pom.xml
+
+      - uses: actions/upload-artifact@master
+        with:
+          name: digibank.war
+          path: ./target/"digibank".war
+          
+      
+
+
+  
+ 
+  
